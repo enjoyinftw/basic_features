@@ -1,0 +1,21 @@
+#pragma once
+
+#include<string>
+
+static std::string GetResourceDir()
+{
+#ifdef NDEBUG //RELEASE
+    return "@RESOURCE_FOLDER_NAME@/";
+#else
+    return "@RESOURCE_SRC_DIR@/";
+#endif
+}
+
+static std::string GetGameDataDir()
+{
+#ifdef NDEBUG // RELEASE
+    return "@GAMEDATA_FOLDER_NAME@/";
+#else
+    return "@GAMEDATA_SRC_DIR@/";
+#endif
+}
