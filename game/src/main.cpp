@@ -5,7 +5,7 @@
 int main()
 {
     gp::Game game{};
-    game.start();
+    game.run();
 
     return 0;
 }

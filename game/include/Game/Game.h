@@ -5,7 +5,7 @@ namespace gp {
     class Game {
     public:
         Game();
-        void start();
+        void run();
 
     private:
         sf::RenderWindow window;

@@ -5,7 +5,7 @@ namespace gp {
         window{ sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "Basic Features") } {
         window.setFramerateLimit(144);
     }
-    void Game::start()
+    void Game::run()
     {
         while (window.isOpen())
         {
