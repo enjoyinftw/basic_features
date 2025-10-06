@@ -1,6 +1,7 @@
 # game/CMakeLists.txt
 add_executable(${GAME_TARGET_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Game/Game.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Game/Player.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 )
 

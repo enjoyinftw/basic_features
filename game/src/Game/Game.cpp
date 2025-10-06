@@ -1,4 +1,5 @@
 #include "Game/Game.h"
+#include "Game/Player.h"
 
 namespace gp {
     Game::Game() :
@@ -7,11 +8,14 @@ namespace gp {
     }
     void Game::run()
     {
+        Player player{};
+
         while (window.isOpen())
         {
             processEvents();
             update();
             render();
+            player.render(window);
         }
     }
 
@@ -31,8 +35,9 @@ namespace gp {
     }
 
     void Game::render() {
-        window.clear(sf::Color::Blue);
+ 
         window.display();
+        window.clear(sf::Color::Blue);//later swap this to before display
 
     }
 }
