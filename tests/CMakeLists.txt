@@ -1,11 +1,13 @@
 add_executable(
-  hello_test
-  hello_text.cpp
+  ${GAME_TEST_TARGET_NAME}
+  ${CMAKE_CURRENT_SOURCE_DIR}/test_game/player_test.cpp
 )
 target_link_libraries(
-  hello_test
+  ${GAME_TEST_TARGET_NAME}
   GTest::gtest_main
+  ${ENGINE_TARGET_NAME}
+  ${GAME_TARGET_NAME}
 )
 
 include(GoogleTest)
-gtest_discover_tests(hello_test)
+gtest_discover_tests(${GAME_TEST_TARGET_NAME})

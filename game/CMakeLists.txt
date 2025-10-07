@@ -1,8 +1,7 @@
 # game/CMakeLists.txt
-add_executable(${GAME_TARGET_NAME}
+add_library(${GAME_TARGET_NAME} STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Game/Game.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Game/Player.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 )
 
 set(RESOURCE_FOLDER_NAME "assets")
@@ -27,7 +26,7 @@ target_include_directories(${GAME_TARGET_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR
 
 
 target_compile_features(${GAME_TARGET_NAME} PRIVATE cxx_std_17)
-target_link_libraries(${GAME_TARGET_NAME} PRIVATE
+target_link_libraries(${GAME_TARGET_NAME} PUBLIC
     ${ENGINE_TARGET_NAME}
     SFML::Graphics
     SFML::Window

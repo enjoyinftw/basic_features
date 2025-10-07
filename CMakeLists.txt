@@ -6,6 +6,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # Custom target names
 set(ENGINE_TARGET_NAME Engine)
 set(GAME_TARGET_NAME Game)
+set(GAME_START_TARGET_NAME GameStart)
+set(GAME_TEST_TARGET_NAME GameTest)
 
 set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
 set(CMAKE_CXX_STANDARD 17)
@@ -33,3 +35,4 @@ FetchContent_MakeAvailable(googletest)
 add_subdirectory(engine)
 add_subdirectory(game)
 add_subdirectory(tests)
+add_subdirectory(gameStart)
