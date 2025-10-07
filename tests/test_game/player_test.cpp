@@ -21,7 +21,21 @@ namespace gp {
         ASSERT_NO_THROW(Player());
     }
 
+    TEST_F(PlayerTest, ConstructedAtCorrectPosition) {
+        auto position = player.getPosition();
+        ASSERT_EQ(position.x, 0);
+        ASSERT_EQ(position.y, 0);
+    }
+
     TEST_F(PlayerTest, RenderFunctionExecutesWithoutError) {
         ASSERT_NO_THROW(player.render(window));
+    }
+
+    TEST_F(PlayerTest, ChangesToCorrectPosition) {
+        player.setPosition({ 100, 100 });
+        auto position = player.getPosition();
+        ASSERT_EQ(position.x, 100);
+        ASSERT_EQ(position.y, 100);
+
     }
 };

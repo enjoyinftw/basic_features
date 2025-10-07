@@ -20,4 +20,15 @@ namespace gp {
     {
         window.draw(player_sprite);
     }
+
+    void Player::setPosition(const sf::Vector2f& position)
+    {
+        player_sprite.setPosition(position);
+    }
+
+    const sf::Vector2f Player::getPosition() const
+    {
+
+        return player_sprite.getPosition();
+    }
 }
