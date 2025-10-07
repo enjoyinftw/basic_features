@@ -1,3 +1,5 @@
+enable_testing()
+
 add_executable(
   ${GAME_TEST_TARGET_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/test_game/player_test.cpp
