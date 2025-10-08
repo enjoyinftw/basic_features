@@ -10,7 +10,7 @@ namespace gp {
     private:
         sf::RenderWindow window;
         void processEvents();
-        void update();
+        void update(const sf::Time& timePerFrame);
         void render();
     };
 }

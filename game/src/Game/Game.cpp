@@ -10,10 +10,18 @@ namespace gp {
     {
         Player player{};
 
+        sf::Clock clock;
+        sf::Time timeSinceLastUpdate = sf::Time::Zero;
+        const auto timePerFrame = sf::seconds(1.f / 60.f);
         while (window.isOpen())
         {
-            processEvents();
-            update();
+            
+            timeSinceLastUpdate += clock.restart();
+            while (timeSinceLastUpdate > timePerFrame) {
+                timeSinceLastUpdate -= timePerFrame;
+                processEvents();
+                update(timePerFrame);
+            }
             render();
             player.render(window);
         }
@@ -30,7 +38,7 @@ namespace gp {
         }
     }
 
-    void Game::update()
+    void Game::update(const sf::Time& timePerFrame)
     {
     }
 
