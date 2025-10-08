@@ -1,15 +1,14 @@
 #include "Game/Game.h"
-#include "Game/Player.h"
+
 
 namespace gp {
     Game::Game() :
-        window{ sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "Basic Features") } {
+        window{ sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "Basic Features") },
+        player{} {
         window.setFramerateLimit(144);
     }
     void Game::run()
     {
-        Player player{};
-
         sf::Clock clock;
         sf::Time timeSinceLastUpdate = sf::Time::Zero;
         const auto timePerFrame = sf::seconds(1.f / 60.f);
@@ -23,7 +22,7 @@ namespace gp {
                 update(timePerFrame);
             }
             render();
-            player.render(window);
+           
         }
     }
 
@@ -44,8 +43,10 @@ namespace gp {
 
     void Game::render() {
  
+        window.clear(sf::Color::Blue);
+        player.render(window);
         window.display();
-        window.clear(sf::Color::Blue);//later swap this to before display
+       
 
     }
 }
