@@ -39,6 +39,7 @@ namespace gp {
 
     void Game::update(const sf::Time& timePerFrame)
     {
+        player.update(timePerFrame);
     }
 
     void Game::render() {
@@ -49,4 +50,5 @@ namespace gp {
        
 
     }
+
 }
