@@ -60,6 +60,11 @@ namespace gp {
             sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
             positionChange.y += 1;
         }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) {
+            positionChange.x *= 25;
+            positionChange.y *= 25;
+        }
         return positionChange;
     }
 
