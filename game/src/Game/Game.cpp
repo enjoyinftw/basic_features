@@ -9,8 +9,8 @@ namespace gp {
     }
     void Game::run()
     {
-        sf::Clock clock;
-        sf::Time timeSinceLastUpdate = sf::Time::Zero;
+        sf::Clock clock{};
+        sf::Time timeSinceLastUpdate{ sf::Time::Zero };
         const auto timePerFrame = sf::seconds(1.f / 60.f);
         while (window.isOpen())
         {

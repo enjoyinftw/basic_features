@@ -8,7 +8,10 @@ namespace gp {
         : player_speed {100}, 
         player_position{},
         player_texture{},
-        player_sprite{player_texture}
+        player_sprite{player_texture},
+        isTeleportOnCooldown{false},
+        teleportCooldownTime{sf::Time::Zero},
+        player_teleport_distance{25.f}
     {
         std::string texture_path = (GetResourceDir() + "player.png");
         if (!player_texture.loadFromFile(texture_path)) {
@@ -18,6 +21,7 @@ namespace gp {
     };
 
     void Player::update(const sf::Time& timePerFrame) {
+        changeTeleportCooldownTime(-timePerFrame);
         auto newPositionChange = processInputs();
         auto currentPosition = getPosition();
         currentPosition += newPositionChange * timePerFrame.asSeconds() * player_speed;
@@ -41,7 +45,7 @@ namespace gp {
         return player_sprite.getPosition();
     }
 
-    sf::Vector2f Player::processInputs() const
+    sf::Vector2f Player::processInputs() 
     {
         sf::Vector2f positionChange{};
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) ||
@@ -62,11 +66,51 @@ namespace gp {
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) {
-            positionChange.x *= 25;
-            positionChange.y *= 25;
+            if (!getTeleportCooldownStatus()) {
+                int teleport_distance = useTeleportSkill();
+                positionChange.x *= teleport_distance;
+                positionChange.y *= teleport_distance;
+            }
         }
         return positionChange;
     }
 
+    void Player::setTeleportCooldownStatus(bool value) {
+        isTeleportOnCooldown = value;
+    }
+
+    const bool Player::getTeleportCooldownStatus() const {
+        return isTeleportOnCooldown;
+    }
+
+    void Player::changeTeleportCooldownTime(sf::Time value) {
+        teleportCooldownTime += value;
+        if (teleportCooldownTime <= sf::Time::Zero) {
+            setTeleportCooldownTime(sf::Time::Zero);
+            setTeleportCooldownStatus(false);
+        }
+    }
+
+    void Player::setTeleportCooldownTime(sf::Time value) {
+        teleportCooldownTime = value;
+    }
+
+    sf::Time Player::getTeleportCooldownTime() const {
+        return teleportCooldownTime;
+    }
+
+    void Player::setTeleportDistance(float value) {
+        player_teleport_distance = value;
+    }
+
+    const float Player::getTeleportDistance() const {
+        return player_teleport_distance;
+    }
+
+    int Player::useTeleportSkill() {
+        setTeleportCooldownStatus(true);
+        setTeleportCooldownTime(sf::seconds(6.f));
+        return player_teleport_distance;
+    }
 
 }
