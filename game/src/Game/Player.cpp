@@ -64,6 +64,10 @@ namespace gp {
             sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
             positionChange.y += 1;
         }
+        if (positionChange.x != 0.f || positionChange.y != 0.f) {
+            positionChange = positionChange.normalized();
+        }
+
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) {
             if (!getTeleportCooldownStatus()) {
